@@ -14,5 +14,6 @@
     "ios": "expo start --ios",
     "web": "expo start --web"
   },
+  
   "private": true
 }
