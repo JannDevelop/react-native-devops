@@ -65,3 +65,16 @@ jobs:
         with:
           name: app-debug-apk
           path: android/app/build/outputs/apk/debug/app-debug.apk
+      
+      - name: Отправка APK в Telegram (CD)
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          message: |
+             **Новая сборка Android готова!**
+            
+             **Коммит:** ${{ github.event.head_commit.message }}
+             **Автор:** ${{ github.actor }}
+             **Репозиторий:** ${{ github.repository }}
+          document: android/app/build/outputs/apk/debug/app-debug.apk
